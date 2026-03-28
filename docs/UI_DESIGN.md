@@ -1,0 +1,231 @@
+# UI/UX Design Specification
+
+## Design System
+
+### Color Palette
+
+| Name | Hex | Usage |
+|------|-----|-------|
+| Primary | `#3b82f6` | Actions, links, focus states |
+| Primary Dark | `#2563eb` | Hover states |
+| Secondary | `#64748b` | Secondary text, borders |
+| Success | `#22c55e` | Done status, success states |
+| Warning | `#f59e0b` | In progress, warnings |
+| Danger | `#ef4444` | Destructive actions, errors |
+| Background | `#ffffff` | Page background |
+| Surface | `#f8fafc` | Cards, elevated surfaces |
+| Border | `#e2e8f0` | Borders, dividers |
+| Text Primary | `#0f172a` | Main text |
+| Text Secondary | `#64748b` | Secondary text |
+| Text Muted | `#94a3b8` | Placeholder, disabled |
+
+### Typography
+
+- **Font Family**: Inter (Google Fonts)
+- **Headings**:
+  - H1: 2xl/24px, font-weight 700
+  - H2: xl/20px, font-weight 600
+  - H3: lg/18px, font-weight 600
+- **Body**: sm/14px, font-weight 400
+- **Small**: xs/12px, font-weight 400
+- **Monospace**: JetBrains Mono (for task IDs, code)
+
+### Spacing
+
+- Base unit: 4px
+- Common spacing: 4, 8, 12, 16, 24, 32, 48px
+- Card padding: 16px
+- Section gap: 24px
+
+### Border Radius
+
+- Small: 4px (buttons, inputs)
+- Medium: 8px (cards)
+- Large: 12px (modals)
+- Full: 9999px (avatars, badges)
+
+## Layout Structure
+
+### Page Layout
+```
+┌─────────────────────────────────────────────────────────┐
+│ Header (h: 56px)                                        │
+│ [Logo] [Project: PM ▼] [Board|List|Cal|Timeline|Dash] │
+├──────────┬──────────────────────────────────────────────┤
+│ Sidebar │ Main Content                                 │
+│ (w:256) │                                              │
+│          │                                              │
+│ [WS ▼]  │ ┌─────────────────────────────────────────┐ │
+│          │ │ View Content (Kanban/List/Calendar/etc) │ │
+│ Projects │ │                                          │ │
+│ ─ PM     │ │                                          │ │
+│ ─ MC     │ │                                          │ │
+│          │ │                                          │ │
+│          │ └─────────────────────────────────────────┘ │
+│          │                                              │
+├──────────┴──────────────────────────────────────────────┤
+│ (Status bar - optional)                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Kanban Board Layout
+```
+┌─────────────────────────────────────────────────────────┐
+│ [Backlog]         [To Do]         [In Progress]  [Done] │
+│ ┌─────────┐       ┌─────────┐      ┌─────────┐  ┌────┐ │
+│ │ PM-1    │       │ PM-2    │      │ PM-3    │  │ ✓  │ │
+│ │ Task    │       │ Task    │      │ Task    │  │    │ │
+│ │ ─────── │       │ ─────── │      │ ─────── │  │    │ │
+│ │ 👤 Due  │       │ 👤      │      │ 👤 Due  │  │    │ │
+│ └─────────┘       └─────────┘      └─────────┘  └────┘ │
+│ [+ Add]           [+ Add]           [+ Add]              │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Task Card Design
+```
+┌──────────────────────────────┐
+│ PM-1              [Priority] │
+│ Task title goes here...      │
+│                              │
+│ 📅 2 days ago                │
+│                              │
+│ 👤  💬  📎                  │
+└──────────────────────────────┘
+```
+
+### Task Detail Modal
+```
+┌─────────────────────────────────────────────────────────┐
+│ PM-1                                    [✕]            │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│ # Task Title Here                                        │
+│                                                          │
+│ Status: [In Progress ▼]     Priority: [High ▼]           │
+│                                                          │
+│ Assignee: [👤 Jane Doe ▼]  Due: [📅 Jan 15, 2024]       │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│ Description                                              │
+│ ─────────────────────────────────────────────────────── │
+│ This is the task description. It can contain multiple   │
+│ lines and markdown formatting.                          │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│ Subtasks                                                │
+│ ─────────────────────────────────────────────────────── │
+│ ☐ Subtask 1                                             │
+│ ☑ Subtask 2                                             │
+│ ☐ Subtask 3                                             │
+│ [+ Add subtask]                                          │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│ Comments                                                │
+│ ─────────────────────────────────────────────────────── │
+│ 👤 Jane (2h ago)                                        │
+│ This looks good! Ready for review.                       │
+│                                                          │
+│ ┌────────────────────────────────────────────────────┐  │
+│ │ Add a comment...                                   │  │
+│ └────────────────────────────────────────────────────┘  │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│ Activity                                                │
+│ ─────────────────────────────────────────────────────── │
+│ • John moved this from Todo → In Progress (3h ago)      │
+│ • John updated priority to High (5h ago)                │
+│ • Jane created this task (1d ago)                       │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Dashboard Layout
+```
+┌─────────────────────────────────────────────────────────┐
+│ Dashboard                          [+ Create Project]   │
+│ Overview of your project metrics                         │
+├─────────────────────────────────────────────────────────┤
+│ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌──────────┐ │
+│ │ Total     │ │ Completed │ │ In Prog.  │ │ Overdue  │ │
+│ │   45      │ │    23     │ │    12     │ │    3     │ │
+│ └───────────┘ └───────────┘ └───────────┘ └──────────┘ │
+│                                                          │
+│ ┌─────────────────────────┐ ┌─────────────────────────┐  │
+│ │ Tasks by Status         │ │ Tasks by Priority      │  │
+│ │ ─────────────────────── │ │ ─────────────────────  │  │
+│ │ Backlog      ████  5    │ │ ┌────┐┌────┐┌────┐┌──┐ │  │
+│ │ Todo         ███████ 15 │ │ │ 10 ││ 25 ││  8 ││2 │ │  │
+│ │ In Progress  ████████ 12│ │ │Low ││Med ││High││Urg│ │  │
+│ │ Done         ██████████ 23│ │ └────┘└────┘└────┘└──┘ │  │
+│ └─────────────────────────┘ └─────────────────────────┘  │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Component Specifications
+
+### Buttons
+
+| Variant | Background | Text | Border | Use Case |
+|---------|------------|------|--------|----------|
+| Primary | `#3b82f6` | white | none | Main actions |
+| Secondary | `#f1f5f9` | `#334155` | `#e2e8f0` | Secondary actions |
+| Destructive | `#ef4444` | white | none | Delete actions |
+| Ghost | transparent | `#64748b` | none | Subtle actions |
+| Outline | transparent | `#3b82f6` | `#3b82f6` | Alt primary |
+
+### Form Inputs
+
+- Height: 40px
+- Border: 1px solid `#e2e8f0`
+- Border radius: 6px
+- Focus: ring 2px `#3b82f6` with 20% opacity
+- Padding: 0 12px
+
+### Cards
+
+- Background: white
+- Border: 1px solid `#e2e8f0`
+- Border radius: 8px
+- Shadow: `0 1px 3px rgba(0,0,0,0.1)`
+- Padding: 16px
+
+### Badges/Pills
+
+- Height: 22px
+- Padding: 0 8px
+- Border radius: 9999px
+- Font size: 12px
+- Font weight: 500
+
+### Avatars
+
+- Small: 24px (task cards)
+- Medium: 32px (comments)
+- Large: 40px (headers)
+- Fallback: initials on colored background
+
+## Responsive Breakpoints
+
+| Breakpoint | Min Width | Layout |
+|------------|-----------|--------|
+| Mobile | 0 | Single column, collapsible sidebar |
+| Tablet | 768px | Wider columns, visible sidebar |
+| Desktop | 1024px | Full layout with wide Kanban |
+| Wide | 1440px | Expanded columns, more metrics |
+
+## Animations
+
+- **Duration**: 150ms (micro), 200ms (standard), 300ms (emphasis)
+- **Easing**: `cubic-bezier(0.4, 0, 0.2, 1)` (standard)
+- **Hover transitions**: background, color, transform
+- **Drag animations**: slight rotation, shadow elevation
+- **Modal**: fade in + scale from 95%
+
+## Accessibility
+
+- WCAG 2.1 AA compliance
+- Focus visible outlines (2px `#3b82f6`)
+- Sufficient color contrast (4.5:1 minimum)
+- Keyboard navigation support
+- Screen reader labels
+- Reduced motion preference support
